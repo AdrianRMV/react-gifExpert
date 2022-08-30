@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from 'React';
+import ReactDOM from 'React-dom/client';
 import { GifExpertApp } from './GifExpertApp';
 
 import './styles.css';
