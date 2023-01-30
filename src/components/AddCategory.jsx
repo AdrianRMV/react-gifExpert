@@ -1,4 +1,6 @@
 import { useState } from 'React';
+import PropTypes from 'prop-types'
+
 
 export const AddCategory = ({ onNewCategory }) => {
 
@@ -11,21 +13,16 @@ export const AddCategory = ({ onNewCategory }) => {
     const onSumbit = (event) => {
         event.preventDefault();
         const cleanInputValue = inputValue.trim();
-        if ( cleanInputValue.length <= 1 ) return; // ! Si el input esta vacio o no tiene mas de una letra no se envia NADA
-
-        /**
-        ** A los "set" se le puede pasar un callback como parametro
-        ** En este caso lo que hace es mandar como retorno un arreglo, con lo que estaba en el input
-        ** Y las demas categorias despues.
-        **/
+        
+        // Si el input esta vacio o no tiene mas de una letra no se envia NADA
+        if ( cleanInputValue.length <= 1 ) return; 
        
-        // setCategories( categories => [ inputValue, ...categories] );
         onNewCategory( cleanInputValue );
         setInputValue(''); // * Limpia el input al terminar de agregarse
     }
 
     return(
-        <form onSubmit={ onSumbit }>
+        <form onSubmit={ onSumbit } aria-label="form">
             <input 
                 type="text" 
                 placeholder="Buscar Gifs" 
@@ -35,3 +32,7 @@ export const AddCategory = ({ onNewCategory }) => {
         </form>
     );
 };
+
+AddCategory.propTypes = {
+    onNewCategory: PropTypes.func.isRequired // func quiere decir que el valor de este sera una funcion y sera REQUERIDA si o si para el funcionamiento de este componente
+}
