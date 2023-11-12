@@ -1,16 +1,16 @@
-// ! CUSTOM HOOK 
+// ! CUSTOM HOOK
 
-import { useEffect, useState } from "React";
-import { getGifs } from "../helpers/getGifs.js";
+import { useEffect, useState } from 'react';
+import { getGifs } from '../helpers/getGifs.js';
 
-export const useFetchGifs = ( category ) => {
+export const useFetchGifs = (category) => {
     const [images, setImages] = useState([]);
-    const [isLoading, setIsloading] = useState( true );
+    const [isLoading, setIsloading] = useState(true);
 
     const getImages = async () => {
         const newImages = await getGifs(category);
         setImages(newImages);
-        setIsloading( false );
+        setIsloading(false);
     };
 
     useEffect(() => {
@@ -19,6 +19,6 @@ export const useFetchGifs = ( category ) => {
 
     return {
         images, // * Manera base de hacerlo es -> images: images , pero cuando tienen el mismo nombre se puede simplificar
-        isLoading // * Igual con esta variable
+        isLoading, // * Igual con esta variable
     };
 };
